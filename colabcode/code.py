@@ -30,6 +30,7 @@ class ColabCode:
         extensions_dir=None,
         code=True,
         lab=False,
+        code_version = "3.7.4"
     ):
         self.port = port
         self.password = password
@@ -39,7 +40,9 @@ class ColabCode:
         self._mount = mount_drive
         self._user_data_dir = user_data_dir
         self._code = code
-        self._lab = lab
+        self._lab = lab,
+        CODESERVER_VERSION = code_version,
+        
         if self._lab:
             self._start_server()
             self._run_lab()
