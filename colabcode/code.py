@@ -14,9 +14,6 @@ except ImportError:
     colab_env = False
 
 
-EXTENSIONS = ["ms-python.python", "ms-toolsai.jupyter"]
-
-
 class ColabCode:
     def __init__(
         self,
@@ -29,7 +26,8 @@ class ColabCode:
         extensions_dir=None,
         code=True,
         lab=False,
-        code_version = "3.7.4"
+        code_version = "3.7.4",
+        extensions =  ["ms-python.python", "ms-toolsai.jupyter"]
     ):
         self.port = port
         self.password = password
@@ -41,6 +39,7 @@ class ColabCode:
         self._code = code
         self._lab = lab
         self.code_version = code_version
+        self.extensions = extensions
         
         if self._lab:
             self._start_server()
@@ -61,7 +60,7 @@ class ColabCode:
         )
 
     def _install_extensions(self):
-        for ext in EXTENSIONS:
+        for ext in self.extensions:
             if self._extensions_dir:
                 subprocess.run(
                     [
