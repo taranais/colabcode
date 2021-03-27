@@ -15,7 +15,6 @@ except ImportError:
 
 
 EXTENSIONS = ["ms-python.python", "ms-toolsai.jupyter"]
-CODESERVER_VERSION = "3.7.4"
 
 
 class ColabCode:
@@ -41,7 +40,7 @@ class ColabCode:
         self._user_data_dir = user_data_dir
         self._code = code
         self._lab = lab
-        CODESERVER_VERSION = code_version
+        self.code_version = code_version
         
         if self._lab:
             self._start_server()
@@ -52,13 +51,12 @@ class ColabCode:
             self._start_server()
             self._run_code()
 
-    @staticmethod
     def _install_code():
         subprocess.run(
             ["wget", "https://code-server.dev/install.sh"], stdout=subprocess.PIPE
         )
         subprocess.run(
-            ["sh", "install.sh", "--version", f"{CODESERVER_VERSION}"],
+            ["sh", "install.sh", "--version", f"{self.code_version}"],
             stdout=subprocess.PIPE,
         )
 
