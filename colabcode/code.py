@@ -40,8 +40,8 @@ class ColabCode:
         self._mount = mount_drive
         self._user_data_dir = user_data_dir
         self._code = code
-        self._lab = lab,
-        CODESERVER_VERSION = code_version,
+        self._lab = lab
+        CODESERVER_VERSION = code_version
         
         if self._lab:
             self._start_server()
